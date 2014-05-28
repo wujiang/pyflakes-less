@@ -1,0 +1,24 @@
+* pyflakes-less
+
+** Purpose
+Make pyflakes less aggressive by ignoring all warning messages except:
+- [X] Undefined variables
+- [X] Unused variables
+- [X] Undefined local variables
+
+
+** Installation
+*** Dependencies
+- pyflakes
+
+*** Install
+Put `pyflakes-less` into your `$PATH`. If you installed `pyflakes` into your
+`virtualenv`, then you need to point the `python` executable to the one in
+your `virtualenv`, i.e.:
+#+BEGIN_SRC python
+#!/usr/bin/env /home/wjiang/venv/core/bin/python
+
+#+END_SRC
+
+*** Git pre-commit hook
+Copy `git-hooks/pre-commit` to your `.git/hooks` directory.

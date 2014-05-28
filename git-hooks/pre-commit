@@ -1,0 +1,30 @@
+#!/usr/bin/python
+"""
+Pre-Commit hook checking for pyflakes errors and special warnings.
+
+Tip: Ignore errors with `git commit -n`. For `magit` users, use `c -n c` to
+by-pass this check.
+
+"""
+
+import re
+import sys
+import subprocess
+
+
+MODIFIED_RE = re.compile("^(?:M|A)..(?P<name>.*\.py)", re.M)
+
+
+def main():
+    p = subprocess.Popen(["git", "status", "--porcelain"],
+                         stdout=subprocess.PIPE)
+    out, err = p.communicate()
+    modifieds = MODIFIED_RE.findall(out)
+
+    if modifieds:
+        cmd = ["pyflakes-less"] + modifieds
+        sys.exit(subprocess.call(cmd))
+
+
+if __name__ == "__main__":
+    main()
