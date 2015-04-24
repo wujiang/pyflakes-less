@@ -3,7 +3,11 @@
 import os
 import sys
 import argparse
-import StringIO
+
+try:
+    from StringIO import StringIO
+except:
+    from io import StringIO
 
 from pyflakes.api import checkRecursive
 from pyflakes.reporter import Reporter
@@ -48,8 +52,8 @@ def main():
     parser.add_argument("files", nargs="+", help="files to check")
     args = parser.parse_args()
 
-    warning_stream = StringIO.StringIO()
-    error_stream = StringIO.StringIO()
+    warning_stream = StringIO()
+    error_stream = StringIO()
 
     reporter = Reporter(warning_stream, error_stream)
 
