@@ -22,3 +22,7 @@ your `virtualenv`, i.e.:
 
 *** Git pre-commit hook
 Copy `git-hooks/pre-commit` to your `.git/hooks` directory.
+
+*** Usage
+To ignore errors, use `git commit -n`. For `magit` users, use `c -n c` to
+by-pass this check.
